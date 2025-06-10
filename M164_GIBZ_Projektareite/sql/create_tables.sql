@@ -18,7 +18,7 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Ratings (
-    RatingID INT PRIMARY KEY,
+    RatingID BIGINT PRIMARY KEY,
     MovieID INT,
     UserID INT,
     Score DECIMAL(2,1),
@@ -28,7 +28,7 @@ CREATE TABLE Ratings (
 );
 
 CREATE TABLE Reviews (
-    ReviewID INT PRIMARY KEY,
+    ReviewID BIGINT PRIMARY KEY,
     MovieID INT,
     UserID INT,
     Text TEXT,

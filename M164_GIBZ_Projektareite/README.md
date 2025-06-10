@@ -1,26 +1,46 @@
-# 🎬 Movie Ratings Automation Project
+# Movie Ratings Project
 
-This project automates the process of importing and analyzing movie ratings data. A Python script imports data from a CSV file into a normalized relational database. SQL procedures/functions are used to process and analyze the data. A Grafana dashboard provides insights such as top-rated movies, popular genres, and rating trends.
+## Overview
+A normalized movie rating database project with import, analysis, monitoring, and backup.
 
 ## Features
-- Data import script for bulk loading
-- Database normalized to 3NF
-- Stored procedure + analytical SQL function
-- Backup/restore scripts
-- Grafana dashboard with 3+ visualizations
+- 5 normalized tables (Movies, Genres, Users, Ratings, Reviews)
+- Bulk import from CSV (Python)
+- Stored procedure for full movie/rating/user insert
+- Analysis function (average ratings, genre, review count)
+- Backup/restore script
+- Grafana dashboard (3 visualizations)
+- No hardcoded credentials (config file)
+- Component diagram and normalization docs
 
-## Tech Stack
-- Python
-- PostgreSQL or MySQL
-- Grafana
-- SQL
-- GitHub
+## Structure
+- `sql/` — DDL, procedures, functions
+- `scripts/` — CSV import, backup/restore
+- `config/` — DB config
+- `monitoring/` — Grafana setup
+- `docs/` — Normalization and component diagram
 
 ## How to Run
-1. Configure `config/db_config.json`
-2. Run `import_csv.py` to load the data
-3. Run `create_tables.sql` to build DB
-4. Open Grafana to view dashboard
+1. Configure DB credentials in `config/db_config.json`.
+2. Create tables:  
+   ```sh
+   mysql -u <user> -p <db> < sql/create_tables.sql
+   ```
+3. Import CSVs:  
+   ```sh
+   python3 scripts/import_csv.py
+   ```
+4. Create procedure & function:  
+   ```sh
+   mysql -u <user> -p <db> < sql/sp_insert_full_movie_rating.sql
+   mysql -u <user> -p <db> < sql/fn_movie_rating_summary.sql
+   ```
+5. Backup/restore:  
+   ```sh
+   ./scripts/backup_restore.sh backup moviedb backup.sql
+   ./scripts/backup_restore.sh restore moviedb backup.sql
+   ```
+6. Set up Grafana as per `monitoring/grafana_setup.md`.
 
-## Author
-[Your Name]
+## Presentation
+- See `docs/normalization.md` and `docs/component_diagram.md`
