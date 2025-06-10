@@ -1,0 +1,21 @@
+MovieID,Title,Year,GenreID
+1,The Matrix,1999,1
+2,Inception,2010,2
+3,The Godfather,1972,3
+4,The Dark Knight,2008,2
+5,Pulp Fiction,1994,3
+6,Forrest Gump,1994,5
+7,Interstellar,2014,1
+8,Fight Club,1999,5
+9,The Shawshank Redemption,1994,5
+10,Spider-Man: Into the Spider-Verse,2018,2
+11,Toy Story,1995,4
+12,Spirited Away,2001,9
+13,The Lion King,1994,5
+14,Alien,1979,6
+15,Back to the Future,1985,1
+16,Gladiator,2000,2
+17,The Silence of the Lambs,1991,8
+18,Eternal Sunshine of the Spotless Mind,2004,7
+19,Whiplash,2014,5
+20,Get Out,2017,6

@@ -1,0 +1,22 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Environment
+.venv/
+env/
+venv/
+
+# IDEs
+.idea/
+.vscode/
+
+# Logs and temp files
+*.log
+*.bak
+*.sql~
+*.tmp
+
+# OS-specific
+.DS_Store
+Thumbs.db
