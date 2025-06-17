@@ -1,37 +1,30 @@
-DELIMITER $$
-
-CREATE PROCEDURE sp_insert_full_movie_rating (
-    IN in_movieID INT,
-    IN in_title VARCHAR(100),
-    IN in_year INT,
-    IN in_genreID INT,
-    IN in_userID INT,
-    IN in_age INT,
-    IN in_location VARCHAR(100),
-    IN in_score DECIMAL(2,1),
-    IN in_timestamp TIMESTAMP,
-    IN in_reviewText TEXT
-)
+-- psql -h aws-0-eu-central-2.pooler.supabase.com -U postgres.fcvrfyxqmedmrugjylfo -p 6543 -d Projektarbeit -f ./sp_insert_full_movie_rating.sql
+\c projektarbeit
+CREATE OR REPLACE FUNCTION sp_insert_full_movie_rating(
+    in_movieID INT,
+    in_userID INT,
+    in_score DECIMAL(3, 2),
+    in_reviewText TEXT
+) RETURNS VOID
+LANGUAGE plpgsql
+AS $$
 BEGIN
-    -- Insert movie if it doesn't exist
+    -- Check if the Movie ID exists
     IF NOT EXISTS (SELECT 1 FROM Movies WHERE MovieID = in_movieID) THEN
-        INSERT INTO Movies (MovieID, Title, Year, GenreID)
-        VALUES (in_movieID, in_title, in_year, in_genreID);
+        RAISE EXCEPTION 'MovieID % does not exist', in_movieID;
     END IF;
 
-    -- Insert user if it doesn't exist
+    -- Check if the User ID exists
     IF NOT EXISTS (SELECT 1 FROM Users WHERE UserID = in_userID) THEN
-        INSERT INTO Users (UserID, Age, Location)
-        VALUES (in_userID, in_age, in_location);
+        RAISE EXCEPTION 'UserID % does not exist', in_userID;
     END IF;
 
-    -- Insert rating
-    INSERT INTO Ratings (RatingID, MovieID, UserID, Score, Timestamp)
-    VALUES (UUID_SHORT(), in_movieID, in_userID, in_score, in_timestamp);
+    -- Insert into Ratings table
+    INSERT INTO Ratings (RatingID, MovieID, UserID, Score, RatingDate)
+    VALUES (gen_random_uuid(), in_movieID, in_userID, in_score, NOW());
 
-    -- Insert review
-    INSERT INTO Reviews (ReviewID, MovieID, UserID, Text)
-    VALUES (UUID_SHORT(), in_movieID, in_userID, in_reviewText);
-END$$
-
-DELIMITER ;
+    -- Insert into Reviews table
+    INSERT INTO Reviews (ReviewID, MovieID, UserID, ReviewText, ReviewDate)
+    VALUES (gen_random_uuid(), in_movieID, in_userID, in_reviewText, NOW());
+END;
+$$;

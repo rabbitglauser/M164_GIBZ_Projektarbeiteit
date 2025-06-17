@@ -1,23 +1,30 @@
-DELIMITER $$
+-- psql -h aws-0-eu-central-2.pooler.supabase.com -U postgres.fcvrfyxqmedmrugjylfo -p 6543 -d Projektarbeit -f ./fn_movie_rating_summary.sql
 
-CREATE FUNCTION fn_movie_rating_summary(movie_id INT)
+\c projektarbeit
+
+CREATE OR REPLACE FUNCTION fn_movie_rating_summary(movie_id INT)
 RETURNS VARCHAR(255)
-DETERMINISTIC
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    avg_score DECIMAL(3,2);
+    review_count INT;
+    genre_name VARCHAR(50);
 BEGIN
-    DECLARE avg_score DECIMAL(3,2);
-    DECLARE review_count INT;
-    DECLARE genre_name VARCHAR(50);
-
-    SELECT AVG(r.Score), COUNT(*), g.GenreName
-    INTO avg_score, review_count, genre_name
+    SELECT 
+        COALESCE(AVG(r.Score), 0),
+        COUNT(*),
+        COALESCE(g.GenreName, 'Unknown')
+    INTO 
+        avg_score, 
+        review_count, 
+        genre_name
     FROM Ratings r
     JOIN Reviews rev ON r.MovieID = rev.MovieID AND r.UserID = rev.UserID
     JOIN Movies m ON r.MovieID = m.MovieID
     JOIN Genres g ON m.GenreID = g.GenreID
-    WHERE r.MovieID = movie_id
-    LIMIT 1;
+    WHERE r.MovieID = movie_id;
 
-    RETURN CONCAT('Genre: ', IFNULL(genre_name, 'Unknown'), ', Average Score: ', IFNULL(avg_score, 0), ', Reviews: ', IFNULL(review_count, 0));
-END$$
-
-DELIMITER ;
+    RETURN CONCAT('Genre: ', genre_name, ', Average Score: ', avg_score, ', Reviews: ', review_count);
+END;
+$$;
