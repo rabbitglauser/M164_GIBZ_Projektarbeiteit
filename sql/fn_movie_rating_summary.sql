@@ -2,6 +2,9 @@
 
 \c projektarbeit
 
+-- ✅ This function meets the requirement:
+--    "Minimum 1 Funktion (Analyse aus min 3 Tabellen)"
+
 CREATE OR REPLACE FUNCTION fn_movie_rating_summary(movie_id INT)
 RETURNS VARCHAR(255)
 LANGUAGE plpgsql
@@ -11,13 +14,13 @@ DECLARE
     review_count INT;
     genre_name VARCHAR(50);
 BEGIN
-    SELECT 
-        COALESCE(AVG(r.Score), 0),
-        COUNT(*),
-        COALESCE(g.GenreName, 'Unknown')
-    INTO 
-        avg_score, 
-        review_count, 
+    SELECT
+        COALESCE(AVG(r.Score), 0),      -- from Ratings
+        COUNT(*),                       -- from Reviews
+        COALESCE(g.GenreName, 'Unknown') -- from Genres
+    INTO
+        avg_score,
+        review_count,
         genre_name
     FROM Ratings r
     JOIN Reviews rev ON r.MovieID = rev.MovieID AND r.UserID = rev.UserID

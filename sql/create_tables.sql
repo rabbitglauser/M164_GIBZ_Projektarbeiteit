@@ -39,6 +39,14 @@ CREATE TABLE ratings (
     RatingDate TIMESTAMP DEFAULT NOW()
 );
 
+CREATE TABLE AuditLog (
+    LogID UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    UserID INT REFERENCES Users(UserID),
+    MovieID INT REFERENCES Movies(MovieID),
+    Action TEXT NOT NULL,
+    LogDate TIMESTAMP DEFAULT NOW()
+);
+
 -- Create reviews table
 CREATE TABLE reviews (
     ReviewID UUID PRIMARY KEY DEFAULT gen_random_uuid(),

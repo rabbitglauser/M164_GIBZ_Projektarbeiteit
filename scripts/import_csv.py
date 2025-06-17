@@ -21,7 +21,7 @@ mysql_cursor = mysql_conn.cursor()
 supabase_conn = psycopg2.connect(
     dbname='postgres',                       # usually 'postgres'
     user='postgres',                         # usually 'postgres'
-    password='your_actual_supabase_password',
+    password='070975',
     host='db.suhfyfxibbdebnmouxuk.supabase.co', # replace with your actual host
     port='5432'
 )
