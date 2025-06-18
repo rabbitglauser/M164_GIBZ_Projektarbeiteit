@@ -1,0 +1,31 @@
+MovieID,Title,Year,GenreID,GenreName,ActorID,ActorName,DirectorID,DirectorName,RatingID,UserID,RatingValue,ReviewText,Username
+1,The Matrix,1999,1,Sci-Fi,1,Keanu Reeves,1,Wachowski Sisters,1,1,5.0,Great movie!,UserA
+2,Inception,2010,2,Action,2,Leonardo DiCaprio,2,Christopher Nolan,2,2,4.0,Mind bending!,UserB
+3,The Godfather,1972,3,Crime,3,Marlon Brando,3,Francis Ford Coppola,3,3,5.0,Classic mafia.,UserC
+4,The Dark Knight,2008,2,Action,4,Christian Bale,2,Christopher Nolan,4,1,4.0,Best Batman ever.,UserA
+5,Pulp Fiction,1994,3,Crime,5,John Travolta,5,Quentin Tarantino,5,2,3.0,Very unique.,UserB
+6,Forrest Gump,1994,5,Drama,6,Tom Hanks,6,Robert Zemeckis,6,3,5.0,Heartwarming.,UserC
+7,Interstellar,2014,1,Sci-Fi,2,Leonardo DiCaprio,2,Christopher Nolan,7,1,4.5,Amazing visuals.,UserA
+8,Fight Club,1999,5,Drama,7,Brad Pitt,7,David Fincher,8,2,4.8,Unexpected twist!,UserB
+9,The Shawshank Redemption,1994,5,Drama,8,Tim Robbins,8,Frank Darabont,9,3,5.0,Best prison movie.,UserC
+10,Spider-Man: Into the Spider-Verse,2018,2,Action,9,Shameik Moore,9,Bob Persichetti,10,1,4.7,Fun animation!,UserA
+11,Toy Story,1995,4,Comedy,6,Tom Hanks,6,John Lasseter,11,2,4.9,Childhood favorite.,UserB
+12,Spirited Away,2001,9,Fantasy,10,Rumi Hiiragi,10,Hayao Miyazaki,12,3,5.0,Beautiful story.,UserC
+13,The Lion King,1994,5,Drama,11,Matthew Broderick,11,Roger Allers,13,1,4.6,Disney classic.,UserA
+14,Alien,1979,6,Horror,12,Sigourney Weaver,12,Ridley Scott,14,2,4.3,Very suspenseful.,UserB
+15,Back to the Future,1985,1,Sci-Fi,13,Michael J. Fox,13,Robert Zemeckis,15,3,4.9,Time travel fun!,UserC
+16,Gladiator,2000,2,Action,14,Russell Crowe,14,Ridley Scott,16,1,4.4,Great battles.,UserA
+17,The Avengers,2012,2,Action,15,Robert Downey Jr.,15,Joss Whedon,17,2,4.3,Superhero epic.,UserB
+18,The Prestige,2006,1,Sci-Fi,16,Hugh Jackman,2,Christopher Nolan,18,3,4.6,Mind-bending magic.,UserC
+19,Avatar,2009,7,Adventure,17,Sam Worthington,16,James Cameron,19,1,4.2,Visually stunning.,UserA
+20,The Hobbit: An Unexpected Journey,2012,9,Fantasy,18,Martin Freeman,17,Peter Jackson,20,2,3.8,Started slow.,UserB
+21,The Departed,2006,3,Crime,2,Leonardo DiCaprio,18,Martin Scorsese,21,3,4.7,Intense thriller.,UserC
+22,Jaws,1975,6,Horror,19,Roy Scheider,19,Steven Spielberg,22,1,4.5,Shark classic!,UserA
+23,Whiplash,2014,5,Drama,20,Miles Teller,20,Damien Chazelle,23,2,4.9,Incredible performance.,UserB
+24,The Silence of the Lambs,1991,6,Horror,21,Anthony Hopkins,21,Jonathan Demme,24,3,5.0,Chilling thriller.,UserC
+25,Jurassic Park,1993,7,Adventure,22,Sam Neill,19,Steven Spielberg,25,1,4.8,Classic dinosaurs!,UserA
+26,The Grand Budapest Hotel,2014,4,Comedy,23,Ralph Fiennes,22,Wes Anderson,26,2,4.5,Quirky and fun.,UserB
+27,Coco,2017,4,Comedy,24,Anthony Gonzalez,23,Lee Unkrich,27,3,5.0,Heartwarming and vibrant.,UserC
+28,Fargo,1996,3,Crime,25,Frances McDormand,24,Joel Coen,28,1,4.6,Darkly humorous.,UserA
+29,The Social Network,2010,5,Drama,26,Jesse Eisenberg,25,David Fincher,29,2,4.7,Brilliantly written.,UserB
+30,Django Unchained,2012,3,Crime,27,Jamie Foxx,5,Quentin Tarantino,30,3,4.5,Stylish and bold.,UserC
