@@ -13,4 +13,3 @@ pg_dump -h %HOST% -U %USER% -p %PORT% -F c -f %FILE_NAME% ^
 
 echo Backup complete: %FILE_NAME%
 pause
-
