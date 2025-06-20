@@ -1,7 +1,7 @@
 -- Run with:
 -- psql -h aws-0-eu-north-1.pooler.supabase.com -U postgres.suhfyfxibbdebnmouxuk -p 6543 -d postgres -f ./normalization/normalize.sql
 
--- Drop previous tables if rerunning (removed movie_genres & auditlog if unused)
+-- Drop previous tables if rerunning
 DROP TABLE IF EXISTS ratings, reviews, movies, genres, users, actors, directors, movie_actors, movie_directors CASCADE;
 
 -- 1. Genres
@@ -13,12 +13,13 @@ CREATE TABLE genres
 
 INSERT INTO genres(name)
 SELECT DISTINCT GenreName
-FROM raw_movies;
+FROM raw_movies
+WHERE GenreName IS NOT NULL;
 
 -- 2. Movies
 CREATE TABLE movies
 (
-
+    id           SERIAL PRIMARY KEY, -- <<== FIXED: added ID here
     title        VARCHAR(200) NOT NULL,
     release_year INT          NOT NULL,
     genre_id     INT REFERENCES genres (id) ON DELETE CASCADE
@@ -38,7 +39,8 @@ CREATE TABLE actors
 
 INSERT INTO actors(name)
 SELECT DISTINCT ActorName
-FROM raw_movies;
+FROM raw_movies
+WHERE ActorName IS NOT NULL;
 
 -- 4. Movie Actors (many-to-many)
 CREATE TABLE movie_actors
@@ -49,7 +51,7 @@ CREATE TABLE movie_actors
 );
 
 INSERT INTO movie_actors(movie_id, actor_id)
-SELECT m.id,
+SELECT DISTINCT m.id,
        a.id
 FROM raw_movies r
 JOIN movies m ON r.MovieTitle = m.title AND r.ReleaseYear = m.release_year
@@ -64,7 +66,8 @@ CREATE TABLE directors
 
 INSERT INTO directors(name)
 SELECT DISTINCT DirectorName
-FROM raw_movies;
+FROM raw_movies
+WHERE DirectorName IS NOT NULL;
 
 -- 6. Movie Directors (many-to-many)
 CREATE TABLE movie_directors
@@ -75,7 +78,7 @@ CREATE TABLE movie_directors
 );
 
 INSERT INTO movie_directors(movie_id, director_id)
-SELECT m.id,
+SELECT DISTINCT m.id,
        d.id
 FROM raw_movies r
 JOIN movies m ON r.MovieTitle = m.title AND r.ReleaseYear = m.release_year
@@ -90,7 +93,8 @@ CREATE TABLE users
 
 INSERT INTO users(name)
 SELECT DISTINCT ReviewerName
-FROM raw_movies;
+FROM raw_movies
+WHERE ReviewerName IS NOT NULL;
 
 -- 8. Ratings
 CREATE TABLE ratings
@@ -103,13 +107,14 @@ CREATE TABLE ratings
 );
 
 INSERT INTO ratings(movie_id, user_id, score, rating_date)
-SELECT m.id,
+SELECT DISTINCT m.id,
        u.id,
        r.ReviewRating,
        CURRENT_DATE
 FROM raw_movies r
 JOIN movies m ON r.MovieTitle = m.title AND r.ReleaseYear = m.release_year
-JOIN users u ON r.ReviewerName = u.name;
+JOIN users u ON r.ReviewerName = u.name
+WHERE r.ReviewRating IS NOT NULL;
 
 -- 9. Reviews
 CREATE TABLE reviews
@@ -122,13 +127,14 @@ CREATE TABLE reviews
 );
 
 INSERT INTO reviews(movie_id, user_id, review_text, review_date)
-SELECT m.id,
+SELECT DISTINCT m.id,
        u.id,
        r.ReviewComment,
        CURRENT_DATE
 FROM raw_movies r
 JOIN movies m ON r.MovieTitle = m.title AND r.ReleaseYear = m.release_year
-JOIN users u ON r.ReviewerName = u.name;
+JOIN users u ON r.ReviewerName = u.name
+WHERE r.ReviewComment IS NOT NULL;
 
 -- Optional preview
 SELECT * FROM ratings LIMIT 5;
