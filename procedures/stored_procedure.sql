@@ -1,4 +1,4 @@
--- psql -h aws-0-eu-north-1.pooler.supabase.com -U postgres.suhfyfxibbdebnmouxuk -p 6543 -d postgres -f ./procedures/stored_procedure.sql
+-- psql -h aws-0-eu-north-1.pooler.supabase.com -U postgres.suhfyfxibbdebnmouxuk -p 6543 -d postgres -f ./procedures/stored_procedure.sql -v movie_title='Inception' -v release_year='2010' -v director_name='Christopher Nolan' -v actor_name='Leonardo DiCaprio' -v genre_name='Science Fiction'
 
 \c postgres
 
@@ -66,5 +66,7 @@ BEGIN
 END;
 $$;
 
--- Test call for the insert_movie_details procedure
-CALL insert_movie_details('Movie Title', 2023, 'Director Name', 'Actor Name', 'Genre Name');
+-- Test call for the insert_movie_details procedure with variables
+--CALL insert_movie_details(:movie_title, :release_year, :director_name, :actor_name, :genre_name);
+-- Test call for the insert_movie_details procedure with variables
+CALL insert_movie_details(:'movie_title', :'release_year'::INT, :'director_name', :'actor_name', :'genre_name');
