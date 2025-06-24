@@ -1,5 +1,7 @@
 -- psql -h aws-0-eu-north-1.pooler.supabase.com -U postgres.suhfyfxibbdebnmouxuk -p 6543 -d postgres -f ./functions/functions.sql
 
+--this command is for showing an analysis at the bottom of the code
+-- psql -h aws-0-eu-north-1.pooler.supabase.com -U postgres.suhfyfxibbdebnmouxuk -p 6543 -d postgres -P pager=off -c "SELECT * FROM analyze_movie_ratings();"
 \c postgres
 
 -- Function to analyze average ratings by genre and director

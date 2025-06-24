@@ -19,7 +19,7 @@ WHERE GenreName IS NOT NULL;
 -- 2. Movies
 CREATE TABLE movies
 (
-    id           SERIAL PRIMARY KEY, -- <<== FIXED: added ID here
+    id           SERIAL PRIMARY KEY,
     title        VARCHAR(200) NOT NULL,
     release_year INT          NOT NULL,
     genre_id     INT REFERENCES genres (id) ON DELETE CASCADE

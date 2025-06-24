@@ -67,10 +67,4 @@ END;
 $$;
 
 -- Test call for the insert_movie_details procedure
-CALL insert_movie_details(
-  'The Matrix',
-  1999,
-  'Wachowski Sisters',
-  'Keanu Reeves',
-  'Sci-Fi'
-);
+CALL insert_movie_details('Movie Title', 2023, 'Director Name', 'Actor Name', 'Genre Name');

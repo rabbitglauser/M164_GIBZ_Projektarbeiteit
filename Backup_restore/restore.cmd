@@ -6,6 +6,6 @@ set PORT=6543
 set USER=postgres.fcvrfyxqmedmrugjylfo
 
 echo Restoring database...
-pg_restore -h %HOST% -p %PORT% -U %USER% -d %DB_NAME% --clean --if-exists --no-owner --no-comments --no-privileges --verbose pet_adoption_backup.dump
+pg_restore -h %HOST% -p %PORT% -U %USER% -d %DB_NAME% --clean --if-exists --no-owner --no-comments --no-privileges --verbose movies_backup.dump
 echo Restore complete: %DB_NAME%
 pause

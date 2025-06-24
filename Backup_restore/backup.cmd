@@ -8,7 +8,6 @@ SET PORT=6543
 SET USER=postgres.suhfyfxibbdebnmouxuk
 
 pg_dump -h %HOST% -U %USER% -p %PORT% -F c -f %FILE_NAME% ^
-  -t raw_movies ^
   --no-owner --no-privileges --clean %DB_NAME%
 
 echo Backup complete: %FILE_NAME%
